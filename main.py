@@ -6,13 +6,18 @@ def agregarObjeto():
     agregar = input("¿Desea agregar o modificar un elemento a la lista? ")
     if (agregar in condicionalSi): #comprueba si el valor ingresado esta en la lista "condicionalSi"
         agregado = input("¿Que desea agregar? ")
-        agregadoPos = input("¿En que posicion? ")
+        agregadoPos = int(input("¿En que posicion? "))
         if (agregado.isalpha): # Comprueba que se escriban letras
             lista.insert(int(agregadoPos), agregado) #Inserta en la lista los nuevos datos [Posicion, dato]
             print(f"Listo, ahora tu lista es {lista}")
-        else:
+        elif(agregado in condicionalNum):
+            lista.insert(int(agregadoPos), int(agregado))
+            print(f"Listo, ahora tu lista es {lista}")
+        elif (agregadoPos >= 0 and agregadoPos <= len(lista) - 1 ): #"{len(lista) - 1}" marca el ultimo objeto en la lista
             lista[int(agregadoPos)] = int(agregado) #Convierte los datos a numeros de la nueva lista
             print(f"Listo, ahora tu lista es {lista}")
+        else:
+            pass
     else:
         pass
 
@@ -21,11 +26,11 @@ agregarObjeto()
 def eliminarObjeto():
     eliminar = input("¿Desea eliminar un item? ")
     if (eliminar in condicionalSi):
-        elimarObjPos = int(input(f"Elija la posicion del objeto a eliminar entre 0 y {len(lista) - 1} ")) #Comprueba si se encuentra en el rango de la lista "{len(lista) - 1}" marca el ultimo objeto en la listano
+        elimarObjPos = int(input(f"Elija la posicion del objeto a eliminar entre 0 y {len(lista) - 1} ")) #Comprueba si se encuentra en el rango de la lista "{len(lista) - 1}" marca el ultimo objeto en la lista
         if(elimarObjPos < 0 or elimarObjPos > len(lista) - 1): #Comprueba si el valor introducido es distinto a los limites de la lista
             print("Escriba un numero entre los parametros dichos ")
         else:
-            lista.pop(elimarObjPos)
+            lista.pop(elimarObjPos) #Elimina el objeto en la posicion seleccionada
             print(f"Listo, ahora tu lista es {lista}")
     else:
         pass
@@ -33,10 +38,10 @@ def eliminarObjeto():
 eliminarObjeto()
 
 while True:
-    print("\n1. Agregar objeto")
+    print("1. Agregar objeto")
     print("2. Eliminar objeto")
     print("3. Salir")
-    opcion = input("Elige una opción: ")
+    opcion = input("Elegi una opción: ")
 
     if opcion == '1':
         agregarObjeto()
@@ -45,4 +50,4 @@ while True:
     elif opcion == '3':
         break
     else:
-        print("Opción no válida. Por favor, elige una opción del menú.")
+        print("Error, eliga una opcion")
